@@ -167,7 +167,7 @@ async function runDiagnosis() {
   for (let i = 0; i < diagnosisStatus.steps.length; i++) {
     diagnosisStatus.currentStep = diagnosisStatus.steps[i].label
     diagnosisStatus.progress = ((i + 1) / diagnosisStatus.steps.length) * 100
-    await new Promise(r => setTimeout(r, 800 + Math.random() * 700))
+    await new Promise(r => setTimeout(r, 2600))
   }
 
   diagnosisStatus.status = 'completed'

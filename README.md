@@ -160,18 +160,34 @@ npm run preview
 
 ## 设计系统
 
-### 配色方案
+### 色彩体系 — 高级翡翠薄荷环保风 (Eco-Tech Mint/Emerald)
+
+整体基调为带有轻微绿意的冷灰环保色，告别纯白与纯黑，走高端舒适路线。
 
 | Token | 色值 | 用途 |
 |-------|------|------|
-| `--bg-primary` | `#F3F8F5` | 页面背景（三层径向渐变光晕） |
-| `--bg-card` | `#FFFFFF` | 卡片/容器背景 |
-| `--accent-primary` | `#175A3A` | 森林绿 — 主按钮、图表实线、指标数值 |
-| `--accent-teal` | `#0B808C` | 海洋青 — 预测虚线、诊断按钮、附件区域 |
-| `--accent-danger` | `#DC3D55` | 告警红 — 超标闪烁、高危徽章 |
-| `--accent-warning` | `#E89520` | 警告黄 — 中危徽章、辅助告警 |
-| `--industrial-bg` | `#0A1920` | 工业面板底色（Header + 表头保留） |
-| `--industrial-accent` | `#40C9C0` | 工业面板高亮文字 |
+| `--bg-deep` | `#C8E3D9` | 页面底层基底 |
+| `--bg-panel` | `#E2EFEB` | 面板区域底色 |
+| `--bg-card` | `#EDF5F2` | 柔和薄荷绿卡片背景 |
+| `--accent-primary` | `#059669` | 翡翠绿主色 — 图表实线、主按钮渐变、指标数值 |
+| `--accent-primary-light` | `#10B981` | 翡翠亮绿 — 成功态、辅助高亮、渐变过渡 |
+| `--accent-teal` | `#0284C7` | 科技青蓝 — AI 预测虚线、AI 推理徽章、科技点缀 |
+| `--accent-danger` | `#E63946` | 告警红 — 超标闪烁、高危徽章 |
+| `--accent-warning` | `#FFA840` | 警告橙 — 中危徽章、辅助告警 |
+| `--text-primary` | `#064E3B` | 深翡翠绿灰 — 主标题、核心大数字 |
+| `--text-secondary` | `#475569` | 深灰 — 次要文本、单位、标签 |
+| `--text-muted` | `#64748B` | 浅灰 — 辅助信息 |
+| `--border-card` | `#B8D9CC` | 边框 — 卡片分割线 |
+| `--border-subtle` | `#D1E5DE` | 淡绿灰 — 图表网格线、细微分割 |
+| `--gradient-primary` | `#047857 → #059669` | 主按钮/徽章渐变 |
+| `--gradient-header` | `#E8F5F0 → #C8E5DA` | Header 白绿渐变 |
+| `--shadow-card` | `0 4px 16px rgba(13,148,136,0.08)` | 微绿投影 |
+
+### 页面背景
+
+- `body`：`linear-gradient(135deg, #D0E8DE 0%, #C0DED2 100%)`
+- 叠加细网格科技底纹 + 底部烟气光晕
+- Header：`linear-gradient(90deg, #E8F5F0 0%, #C8E5DA 100%)` + `border-bottom: 2px solid #059669`
 
 ### 字体
 
@@ -184,13 +200,17 @@ npm run preview
 
 | 动画 | 触发方式 | 效果 |
 |------|----------|------|
-| `aiThinkingPulse` | 持续 | 3 个圆点依次呼吸脉冲（AI Thinking 图标） |
-| `stepPulse` | 诊断进行中 | 当前步骤指示器外扩光圈 |
+| `aiThinkingPulse` | 持续 | 3 个圆点绿·蓝·绿交替呼吸脉冲（AI Thinking 图标） |
+| `scanLine` | 诊断进行中 | 顶部绿→蓝渐变扫描线横移动画 |
+| `dataParticleFlow` | 诊断进行中 | 多色数据粒子（绿+蓝）闪烁流动 |
+| `stepPulse` | 诊断进行中 | 当前步骤指示器外扩光圈 + 蓝色辅助光晕 |
 | `fadeSlideIn` | 卡片入场 | 告警项/诊断结果从下方淡入上滑 |
 | `dangerPulse` | 指标超标 | 红色边框阴影呼吸闪烁 |
 | `breathe` | 状态绿灯 | 绿色圆点呼吸效果 |
-| `highlight-flash` | 交叉引用点击 | 目标建议卡青绿色背景渐消 |
+| `highlight-flash` | 交叉引用点击 | 目标建议卡翡翠绿背景渐消 |
 | `fade` | 路由切换 | 页面淡入淡出过渡（220ms） |
+
+> **AI 诊断流程**：5 步顺序执行，每步 2.6s，总时长约 13s，确保用户清晰感知完整检测过程。
 
 ---
 

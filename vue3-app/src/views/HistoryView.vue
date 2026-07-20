@@ -46,7 +46,7 @@ function getTagType(status) {
 </script>
 
 <template>
-  <div>
+  <div class="app-page">
     <el-card style="margin-bottom:20px;">
       <div class="filter-row">
         <div class="filter-group">
@@ -78,9 +78,6 @@ function getTagType(status) {
         :data="historyRecords"
         stripe border
         style="width:100%;"
-        :header-cell-style="{ background: '#0A1920', color: '#40C9C0', fontWeight: 700, fontSize: '13px' }"
-        :cell-style="{ background: 'transparent', color: '#172720' }"
-        :row-style="{ background: 'transparent' }"
       >
         <el-table-column prop="time" label="时间" width="190" />
         <el-table-column prop="so2" label="SO₂浓度 (mg/m³)" width="150" />

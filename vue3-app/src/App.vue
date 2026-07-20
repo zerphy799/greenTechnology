@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { ElNotification } from 'element-plus'
 import { useSystemStore } from './stores/useSystemStore'
 import AppHeader from './components/AppHeader.vue'
@@ -9,6 +9,9 @@ const { rawState: state } = useSystemStore()
 
 let metricsTimer = null
 let patrolTimer = null
+
+// 初始加载状态
+const appLoading = ref(true)
 
 function simulateMetrics() {
   // 每2秒微调实时指标
@@ -42,6 +45,8 @@ onMounted(() => {
   patrolTimer = setInterval(aiPatrol, 15000)
   // 首次延迟5秒触发巡检提示
   setTimeout(aiPatrol, 5000)
+  // 初始加载动画
+  setTimeout(() => { appLoading.value = false }, 1800)
 })
 
 onUnmounted(() => {
@@ -51,6 +56,26 @@ onUnmounted(() => {
 </script>
 
 <template>
+  <!-- 烟气净化加载屏 -->
+  <Transition name="loader-fade">
+    <div v-if="appLoading" class="flue-gas-loader">
+      <div class="loader-ring">
+        <div class="loader-core"></div>
+        <div class="loader-particles">
+          <span class="loader-particle"></span>
+          <span class="loader-particle"></span>
+          <span class="loader-particle"></span>
+          <span class="loader-particle"></span>
+          <span class="loader-particle"></span>
+          <span class="loader-particle"></span>
+        </div>
+      </div>
+      <div class="loader-label">
+        <span class="loader-label-inner">烟气净化系统初始化中</span>
+      </div>
+    </div>
+  </Transition>
+
   <AppHeader />
   <main class="app-main">
     <router-view v-slot="{ Component }">
@@ -68,6 +93,13 @@ onUnmounted(() => {
 }
 .fade-enter-from,
 .fade-leave-to {
+  opacity: 0;
+}
+
+.loader-fade-leave-active {
+  transition: opacity 0.6s ease;
+}
+.loader-fade-leave-to {
   opacity: 0;
 }
 </style>

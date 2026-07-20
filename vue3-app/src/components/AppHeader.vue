@@ -21,19 +21,16 @@ function updateClock() {
   currentTime.value = `${y}-${mo}-${d} ${h}:${mi}:${s}`
 }
 
-function navTo(path) {
-  router.push(path)
-}
-
-function isActive(path) {
-  return route.path === path
-}
+function navTo(path) { router.push(path) }
+function isActive(path) { return route.path === path }
 
 const navItems = [
   { path: '/dashboard', label: '实时监控大屏' },
   { path: '/analytics', label: '运行报表分析' },
   { path: '/history', label: '历史数据查询' }
 ]
+
+const isModelNormal = true
 
 onMounted(() => {
   updateClock()
@@ -48,10 +45,16 @@ onUnmounted(() => {
 <template>
   <header class="app-header">
     <div class="header-inner">
+
       <!-- 左侧 Logo -->
       <router-link to="/dashboard" class="header-logo">
         <span class="logo-icon">净</span>
-        <span>智慧烟气治理专家系统 <span style="font-size:0.7rem;color:var(--text-muted);font-weight:400">(Industrial Flue Gas AI System)</span></span>
+        <span>
+          智慧烟气治理专家系统
+          <div style="font-size:0.6rem;opacity:0.4;font-weight:400;letter-spacing:0.04em;line-height:1.3;">
+            Industrial Flue Gas AI System
+          </div>
+        </span>
       </router-link>
 
       <!-- 中间导航 -->
@@ -70,14 +73,16 @@ onUnmounted(() => {
       <!-- 右侧状态 -->
       <div class="header-status">
         <span class="status-tag">
-          <span class="status-dot green"></span>
-          物理守恒模型: 正常
+          <span class="status-dot" :class="isModelNormal ? 'green' : 'red'"></span>
+          {{ isModelNormal ? '● 物理守恒模型: 正常' : '物理守恒模型: 异常' }}
         </span>
         <span class="status-tag">
-          ⚡ 推理延迟: {{ state.systemStatus.aiInferenceLatency }}ms
+          <span class="chip-icon">&#x2302;</span>
+          推理延迟: {{ state.systemStatus.aiInferenceLatency }}ms
         </span>
         <span class="header-clock">{{ currentTime }}</span>
       </div>
+
     </div>
   </header>
 </template>
